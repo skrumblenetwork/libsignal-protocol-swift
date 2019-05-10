@@ -56,7 +56,8 @@ public final class SignalAddress {
         guard let namePtr = address.name else {
             return nil
         }
-        self.init(name: String(cString: namePtr), deviceId: address.device_id)
+        let addressName = String(cString: namePtr).prefix(address.name_len)
+        self.init(name: String(addressName), deviceId: address.device_id)
     }
 
     deinit {
